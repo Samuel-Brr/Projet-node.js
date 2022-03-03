@@ -28,9 +28,14 @@
             <% } %>
 
         </ul>
-        <ul class="main-geader__item-list">
+        <ul class="main-header__item-list">
             <li class="main-header__item">
                 <a class="<%= path === '/login' ? 'active' : '' %>" href="/login" style="list-style-type: none;">Login</a>
+            </li>
+            <li class="main-header__item">
+                <form action="/logout" method="post">
+                    <button>Logout</button>
+                </form>
             </li>
         </ul>
     </nav>
