@@ -56,18 +56,6 @@ mongoose
     useUnifiedTopology: true }, 
   )
   .then(result => {
-    User.findOne().then(user => {
-      if(!user){
-        const user = new User({
-          name: 'Sam',
-          email: 'sam@test.com',
-          cart: {
-            items: []
-          }
-        })
-        user.save()  
-      }
-    })
     app.listen(3000, ()=>{
       console.log("listening on port 3000...")
     });
