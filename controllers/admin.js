@@ -78,7 +78,7 @@ exports.postEditProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.find()
+  Product.find({userId: req.user._id})
   // .select('title price -_id') Sert a selectionner/déselectionner les key/value pairs qu on veut afficher
   //   .populate('userId') Sert a afficher completement l'objet user id qui est liée a notre produit
     .then(products => {
