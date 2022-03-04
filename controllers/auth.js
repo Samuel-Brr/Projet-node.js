@@ -4,20 +4,27 @@ const User = require("../models/user")
 
 
 exports.getLogin = (req, res, next) => {
-        res.render('auth/login', {
-          path: '/login',
-          pageTitle: 'Login',
-          errorMessage: req.flash('error')
-        });
-  };
+  let message = req.flash('error')
+  if(message.length>0){
+    message = message[0]
+  }else{
+    message = null
+  }
 
-  exports.getSignup = (req, res, next) => {
-    res.render('auth/signup', {
-      path: '/signup',
-      pageTitle: 'Signup',
-      
-    });
-  };
+  res.render('auth/login', {
+    path: '/login',
+    pageTitle: 'Login',
+    errorMessage: message
+  });
+};
+
+exports.getSignup = (req, res, next) => {
+  res.render('auth/signup', {
+    path: '/signup',
+    pageTitle: 'Signup',
+    
+  });
+};
 
   // bcrypt.compare retourne une promesse, le bloc "then" ne signifie pas que les mots de passe correspondent 
   // mais juste qu'il n y a pas eu d'erreur dans le processus de vérification
