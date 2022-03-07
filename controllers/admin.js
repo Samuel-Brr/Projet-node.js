@@ -99,6 +99,13 @@ exports.getProducts = (req, res, next) => {
 exports.deleteProduct = (req, res, next) => {
   const prodId = req.params.productId;
   Product.findOne({_id: prodId, userId: req.user._id})
+  .then(product => {
+    if (!product) {
+      return next(new Error('Product not found.'));
+    }
+    
+    return Product.deleteOne({ _id: prodId, userId: req.user._id });
+  })
     .then(() => {
       console.log('DESTROYED PRODUCT');
       res.status(200).json({message: "success"});
