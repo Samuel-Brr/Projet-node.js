@@ -14,7 +14,8 @@ router.get('/signup', authController.getSignup);
 router.post('/login',
     check('email')
         .isEmail()
-        .withMessage('Please enter a valid email.'),
+        .withMessage('Please enter a valid email.')
+        .normalizeEmail(),
     check(
             'password',
             'Please enter a password with only numbers and text and at least 5 characters.'
@@ -40,7 +41,8 @@ router.post(
               );
             }
           });
-        }),
+        })
+        .normalizeEmail(),
       check(
         'password',
         'Please enter a password with only numbers and text and at least 5 characters.'
